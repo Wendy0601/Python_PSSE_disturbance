@@ -1,5 +1,6 @@
-filename='C:\\Python27\\Ex_psse_python\\datafile\\Network_data_68bus.raw'
-with open(filename,"r") as rawf:
+def branch_bus():
+    filename='C:\\Python27\\Ex_psse_python\\datafile\\Network_data_68bus.raw'
+    with open(filename,"r") as rawf:
             line = ""
             #first three lines are bogus
             for i in range(1,3):
@@ -10,8 +11,7 @@ with open(filename,"r") as rawf:
                 line = rawf.readline()
                 if "END OF BUS DATA" in line:
                     break
-                _nbus += 1
-                
+                _nbus += 1             
                 
             #skip everything until you get to the load data
             while "BEGIN LOAD DATA" not in line:
@@ -28,7 +28,6 @@ with open(filename,"r") as rawf:
                 id = sline[1].replace('\'','')
                 P = float(sline[9])+float(sline[7])+float(sline[5])
                 Q = float(sline[10])+float(sline[8])+float(sline[6])
-                            
                 
             #skip everything until you get to the generator data
             while "BEGIN GENERATOR DATA" not in line:
@@ -69,4 +68,5 @@ with open(filename,"r") as rawf:
                 R.append(float(sline[3]))
                 X.append(float(sline[4]))
                 n_line+=1
-            print (n_line) 
+ return ibus,jbus,idbus
+
